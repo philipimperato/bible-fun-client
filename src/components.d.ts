@@ -7,14 +7,17 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    CarbonWarning: typeof import('~icons/carbon/warning')['default']
-    'FluentEmoji:1stPlaceMedal': typeof import('~icons/fluent-emoji/1st-place-medal')['default']
-    FluentEmoji1stPlaceMedal: typeof import('~icons/fluent/emoji1st-place-medal')['default']
-    IcBaselineWarning: typeof import('~icons/ic/baseline-warning')['default']
-    IcRoundEmojiTransportation: typeof import('~icons/ic/round-emoji-transportation')['default']
-    'Mdi:wifiLockOpen': typeof import('~icons/mdi/wifi-lock-open')['default']
-    MdiBaselineWarning: typeof import('~icons/mdi/baseline-warning')['default']
+    Base: typeof import('./components/dialog/base.vue')['default']
+    BaseDialog: typeof import('./components/dialog/BaseDialog.vue')['default']
+    Button: typeof import('./components/Button.vue')['default']
+    Dialog: typeof import('@headlessui/vue')['Dialog']
+    DialogDescription: typeof import('@headlessui/vue')['DialogDescription']
+    DialogPanel: typeof import('@headlessui/vue')['DialogPanel']
+    DialogTitle: typeof import('@headlessui/vue')['DialogTitle']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TextField: typeof import('./components/form/TextField.vue')['default']
+    TransitionChild: typeof import('@headlessui/vue')['TransitionChild']
+    TransitionRoot: typeof import('@headlessui/vue')['TransitionRoot']
   }
 }

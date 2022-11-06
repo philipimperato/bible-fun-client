@@ -1,4 +1,21 @@
 <script setup lang="ts">
+import { Form } from 'vee-validate'
+import * as Yup from 'yup'
+
+const loginSchema = Yup.object({
+  Email: Yup.string().email().required(),
+  Password: Yup.string().min(6).required(),
+})
+
+const login = () => {
+  console.log('Testing alotngier')
+}
+
+const sendEmail = () => {
+  console.log('Email sent')
+}
+
+const isOpen = ref(false)
 </script>
 
 <template>
@@ -11,19 +28,17 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" action="#" method="POST">
+        <Form
+          v-slot="{ meta }"
+          :validation-schema="loginSchema"
+          @submit="login"
+        >
           <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-            <div class="mt-1">
-              <input id="email" name="email" type="email" autocomplete="email" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-            </div>
+            <TextField name="Email" label="Email" />
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-            <div class="mt-1">
-              <input id="password" name="password" type="password" autocomplete="current-password" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-            </div>
+            <TextField name="Password" label="Password" type="password" />
           </div>
 
           <div class="flex items-center justify-between">
@@ -33,16 +48,23 @@
             </div>
 
             <div class="text-sm">
-              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
+              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500" @click="isOpen = true">
+                Forgot your password?
+              </a>
             </div>
           </div>
 
-          <div>
-            <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <div class="mt-2">
+            <button
+              type="submit"
+              :class="meta.valid ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-gray-300'"
+              :disabled="!meta.valid"
+              class="flex w-full justify-center rounded-md border border-transparent  py-2 px-4 text-sm font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
               Sign in
             </button>
           </div>
-        </form>
+        </Form>
 
         <div class="mt-6">
           <div class="relative">
@@ -86,6 +108,39 @@
       </div>
     </div>
   </div>
+
+  <BaseDialog :open="isOpen" @close="isOpen = false">
+    <template #title>
+      <div class="text-lg font-medium leading-6 text-gray-900">
+        Reset Password
+      </div>
+    </template>
+
+    <template #description>
+      <p class="text-sm text-gray-500 mb-2">
+        An email will be send to the email provided below
+      </p>
+      <TextField name="Email" label="Email" />
+    </template>
+
+    <template #actions>
+      <button
+        type="button"
+        class="btn btn-warning px-4 py-2 text-base"
+        @click="sendEmail"
+      >
+        Send Email
+      </button>
+      <button
+        ref="cancelButtonRef"
+        type="button"
+        class="btn btn-secondary px-4 py-2 text-base"
+        @click="isOpen = false"
+      >
+        Cancel
+      </button>
+    </template>
+  </BaseDialog>
 </template>
 
 <route lang="yaml">
