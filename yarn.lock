@@ -3402,6 +3402,11 @@ prettier@^2.7.1:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
   integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
 
+primevue@^3.18.1:
+  version "3.18.1"
+  resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.18.1.tgz#1f6661cfd8017d867a2a9ad37df400da0f552ff5"
+  integrity sha512-5UYNooA6Qqx0iGaRxPUYLPamxRn6eQKMNU3wbqGyxWhoc944rMaOiT9mVQWhavPlKCgs7FY8SNhsDzqV4aRCxA==
+
 property-expr@^2.0.4:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
