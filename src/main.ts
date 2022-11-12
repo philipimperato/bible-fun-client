@@ -18,9 +18,18 @@ const router = createRouter({
   routes,
 })
 
-createApp(App)
-  .use(pinia)
-  .use(head)
-  .use(router)
-  .mount('#app')
+const app = createApp(App)
+app.use(pinia)
+app.use(head)
+app.use(router)
+app.mount('#app')
+
+// useSnacks(pinia)
+
+// store.$subscribe((mutation, state) => {
+//   for (const { id, type, msg } of Object.values(state.itemsById)) {
+//     console.log(type, msg)
+//     store.removeFromStore({ id })
+//   }
+// })
 

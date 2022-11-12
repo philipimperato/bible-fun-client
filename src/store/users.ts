@@ -9,6 +9,6 @@ export class User extends BaseModel {
 }
 
 const servicePath = 'users'
-export const useUsers = defineStore({ servicePath, Model: User, actions: { testing() {} } })
+export const useUsers = defineStore({ servicePath, Model: User })
 
 api.service(servicePath).hooks({})
