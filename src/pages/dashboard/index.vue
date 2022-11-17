@@ -1,5 +1,5 @@
 <template>
-  <h1>HELLOG ALL!</h1>
+  <h1>Dashboard Home</h1>
 </template>
 
 <route lang="yaml">
