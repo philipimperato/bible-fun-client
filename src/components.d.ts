@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     Notifications: typeof import('./components/notifications.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SimpleTable: typeof import('./components/table/SimpleTable.vue')['default']
     Snacks: typeof import('./components/snacks.vue')['default']
     TextField: typeof import('./components/form/TextField.vue')['default']
     TransitionChild: typeof import('@headlessui/vue')['TransitionChild']

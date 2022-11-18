@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { pinia } from './store/store.pinia'
 import App from './App.vue'
+import { useAuth } from '~/store/auth'
 
 // your custom styles here
 import './styles/tailwind.css'
@@ -18,18 +19,19 @@ const router = createRouter({
   routes,
 })
 
-const app = createApp(App)
-app.use(pinia)
-app.use(head)
-app.use(router)
-app.mount('#app')
+const { feathersClient } = useAuth()
 
-// useSnacks(pinia)
-
-// store.$subscribe((mutation, state) => {
-//   for (const { id, type, msg } of Object.values(state.itemsById)) {
-//     console.log(type, msg)
-//     store.removeFromStore({ id })
-//   }
-// })
+feathersClient
+  .reAuthenticate()
+  .then(() => {
+    createApp(App)
+      .use(pinia)
+      .use(head)
+      .use(router)
+      .mount('#app')
+  })
+  .catch((e: any) => {
+    console.log(e)
+    router.push('login')
+  })
 

@@ -24,6 +24,7 @@ const login = async (formData: any) => {
       email,
       password,
     })
+    console.log(auth.isAuthenticated)
     router.push('/dashboard')
   }
   catch (e: any) {
