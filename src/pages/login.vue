@@ -3,7 +3,7 @@ import { Form } from 'vee-validate'
 import * as Yup from 'yup'
 import { useRouter } from 'vue-router'
 import { useAuth } from '~/store/auth'
-import { addSnack } from '~/store/notifications'
+import { addSnack } from '~/store/notifications.store'
 
 const isForgotEmailOpen = ref(false)
 
@@ -24,8 +24,7 @@ const login = async (formData: any) => {
       email,
       password,
     })
-    console.log(auth.isAuthenticated)
-    router.push('/dashboard')
+    router.push('books')
   }
   catch (e: any) {
     addSnack({

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import type { Notification } from '~/store/notifications'
-import { useNotifications } from '~/store/notifications'
+import type { Notification } from '~/models/notification'
+import { useNotifications } from '~/store/notifications.store'
 
 const show: Ref<boolean> = ref(false)
 const notifications: Ref<Notification[]> = ref([])

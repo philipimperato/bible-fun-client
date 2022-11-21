@@ -1,13 +1,12 @@
-<template>
-  <h1>Dashboard Home</h1>
-  <hr class="mb-12">
+<script setup lang="ts">
+const bookStore = useBooks()
+const { data: books } = bookStore.useFind({ query: {}, onServer: true })
+</script>
 
-  <h1>Table Example</h1>
-  <div class="grid grid-cols-2">
-    <div class="col-span-1">
-      <SimpleTable />
-    </div>
-  </div>
+<template>
+  <router-link v-for="book of books" :key="book.id" :to="`books/${book.name}/61/1`">
+    {{ book.name }}
+  </router-link>
 </template>
 
 <route lang="yaml">

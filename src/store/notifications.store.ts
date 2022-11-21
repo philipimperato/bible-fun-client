@@ -1,24 +1,13 @@
 import ObjectId from 'bson-objectid'
 import { syncWithStorage } from 'feathers-pinia'
 import { api } from '../feathers'
-import { BaseModel, defineStore } from './store.pinia'
+import { defineStore } from './store.pinia'
+import { Notification } from '~/models/notification'
 
 interface NotificationData {
   type: 'success' | 'info' | 'error'
   title: string
   msg: string
-}
-
-export class Notification extends BaseModel {
-  id?: string
-  type: string
-  msg: string
-  title: string
-
-  constructor(data: Partial<Notification> = {}, options: Record<string, any> = {}) {
-    super(data, options)
-    this.init(data)
-  }
 }
 
 const servicePath = 'notifications'
