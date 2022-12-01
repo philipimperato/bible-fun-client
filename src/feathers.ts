@@ -6,7 +6,6 @@ import io from 'socket.io-client'
 
 const socket = io('http://localhost:3030', { transports: ['websocket'] })
 
-// This variable name becomes the alias for this server.
 export const api = feathers()
   .configure(socketio(socket))
   .configure(auth({ storage: window.localStorage }))

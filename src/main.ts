@@ -5,8 +5,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { pinia } from './store/store.pinia'
 import App from './App.vue'
-import { useAuth } from '~/store/auth'
-import { useUsers } from '~/store/users.store'
+import { useAuthStore } from '~/store/store.auth'
+// import { useUserStore } from '~/store/store.users'
 
 // your custom styles here
 import './styles/tailwind.css'
@@ -21,7 +21,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated } = useAuthStore()
 
   if (to.name !== 'login' && !isAuthenticated)
     next({ name: 'login' })
@@ -31,20 +31,15 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
-const { authenticate } = useAuth()
+const { reAuthenticate } = useAuthStore()
 
-authenticate(null)
+reAuthenticate()
   .catch((e: any) => {
     console.log(e)
     localStorage.removeItem('feathers-jwt')
     router.push('login')
   })
-  .then((result) => {
-    const userStore = useUsers()
-    const { user } = result
-
-    userStore.addToStore(user)
-
+  .then(() => {
     createApp(App)
       .use(pinia)
       .use(head)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUsers } from '~/store/users.store'
+import { useUsers } from '~/store/store.users'
 
 const userStore = useUsers()
 const { data: users, isPending } = userStore.useFind({ query: {}, onServer: true })

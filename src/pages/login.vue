@@ -2,8 +2,8 @@
 import { Form } from 'vee-validate'
 import * as Yup from 'yup'
 import { useRouter } from 'vue-router'
-import { useAuth } from '~/store/auth'
-import { addSnack } from '~/store/notifications.store'
+import { useAuthStore } from '~/store/store.auth'
+import { addSnack } from '~/store/store.notifications'
 
 const isForgotEmailOpen = ref(false)
 
@@ -15,7 +15,7 @@ const loginSchema = Yup.object({
 const router = useRouter()
 
 const login = async (formData: any) => {
-  const auth = useAuth()
+  const auth = useAuthStore()
   const { Email: email, Password: password } = formData
 
   try {

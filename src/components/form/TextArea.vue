@@ -3,10 +3,6 @@ import { toRef } from 'vue'
 import { useField } from 'vee-validate'
 
 const props = defineProps({
-  type: {
-    type: String,
-    default: 'text',
-  },
   value: {
     type: String,
     default: '',
@@ -22,6 +18,10 @@ const props = defineProps({
   successMessage: {
     type: String,
     default: '',
+  },
+  hideDetails: {
+    type: Boolean,
+    default: false,
   },
 })
 
@@ -48,17 +48,16 @@ const onInput = (event: any) => {
     {{ label }}
   </label>
 
-  <div class="mt-1">
-    <input
+  <div class="mt-1 text-sm">
+    <textarea
       :id="name"
       :name="name"
-      :type="type"
       :value="inputValue"
       class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 shadow-sm
-      focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+      focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm"
       @input="onInput"
-    >
-    <div class="text-red-400 ml-1 text-xs min-h-[30px]">
+    />
+    <div v-if="!hideDetails" class="text-red-400 ml-1 text-xs min-h-[30px]">
       {{ errorMessage }}
     </div>
   </div>

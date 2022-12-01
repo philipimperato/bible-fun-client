@@ -2042,10 +2042,10 @@ feathers-hooks-common@^6.1.5:
     lodash "^4.17.21"
     traverse "^0.6.6"
 
-feathers-pinia@v1.0.0-pre.23:
-  version "1.0.0-pre.23"
-  resolved "https://registry.yarnpkg.com/feathers-pinia/-/feathers-pinia-1.0.0-pre.23.tgz#fdfe85998c79be2ec28b075d025757add990f5ea"
-  integrity sha512-kb5T7Il8/FFJvjnO0jCZIFN6YQmshZam4Bd8xHbdj6QU/o0Qdvqnd962wi9WWv/aPsyGZRI4pDF+209b9mlJeA==
+feathers-pinia@v1.0.0-pre.25:
+  version "1.0.0-pre.25"
+  resolved "https://registry.yarnpkg.com/feathers-pinia/-/feathers-pinia-1.0.0-pre.25.tgz#080f2938a5f6b4cd6c83bcec02777eed408806d5"
+  integrity sha512-YmfW+kGXDgC9edAyiSf3B5pYfWRHfkfGumVIkRHVl5tjNkTkxi2HPP7kRW1alDrKTKzYrspcVem7AEtRasDjEA==
   dependencies:
     "@feathersjs/adapter-commons" "5.0.0-pre.28"
     "@feathersjs/commons" "5.0.0-pre.28"
@@ -2058,6 +2058,7 @@ feathers-pinia@v1.0.0-pre.23:
     fast-json-stable-stringify "^2.1.0"
     isomorphic-mongo-objectid "^1.0.9"
     just-debounce "^1.1.0"
+    jwt-decode "^3.1.2"
     lz-string "^1.4.4"
     sift "^16.0.0"
     vue-demi latest
@@ -2792,6 +2793,11 @@ jws@^3.2.2:
   dependencies:
     jwa "^1.4.1"
     safe-buffer "^5.0.1"
+
+jwt-decode@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
+  integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
 kolorist@^1.5.1, kolorist@^1.6.0:
   version "1.6.0"
