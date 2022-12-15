@@ -35,8 +35,8 @@ const { isOpen } = storeToRefs(modal)
         @submit="submit"
       >
         <div class="fixed inset-0 overflow-y-auto">
-          <button tabindex="-1" class="btn rounded-full bg-white w-16 h-16 absolute top-5 right-5" @click="modal.close()">
-            <mdi-close class="w-8 h-8 text-gray-600 mt-3.5" />
+          <button tabindex="-1" class="btn rounded-full bg-gray-100 w-14 h-14 absolute top-5 right-5" @click="modal.close()">
+            <mdi-close class="w-8 h-8 text-gray-600 mt-3" />
           </button>
           <div
             class="flex min-h-full items-center justify-center p-2 text-center"

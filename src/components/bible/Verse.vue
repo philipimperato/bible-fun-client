@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import * as Yup from 'yup'
+import dayjs from 'dayjs'
 import type { Verse } from '~/models/verse'
 
 const props = defineProps({
@@ -10,6 +11,7 @@ const props = defineProps({
     defaultValue: false,
   },
 })
+const emits = defineEmits(['update'])
 const { open, close } = useModal()
 const isActive = toRef(props, 'isActive')
 const verse = toRef(props, 'verse')
@@ -28,6 +30,7 @@ const addNote = async (formData: any): Promise<void> => {
 
   try {
     await newNote.save()
+    emits('update')
     close()
 
     addSnack({
@@ -109,7 +112,8 @@ const addNote = async (formData: any): Promise<void> => {
           </div>
           <button
             :disabled="!meta.valid"
-            class="btn btn-primary py-1 w-16 rounded-full"
+            :class="!meta.valid ? 'btn-disabled' : 'btn-primary'"
+            class="btn py-1 w-16 rounded-full"
           >
             Save
           </button>
@@ -118,43 +122,25 @@ const addNote = async (formData: any): Promise<void> => {
 
       <template #content>
         <div class="px-4 mb-2">
-          <TextArea label="" value="" name="note" hide-details />
+          <TextArea name="note" hide-details />
         </div>
       </template>
     </FormDialog>
 
-    <div class="text-center text-xs italic text-gray-400 my-4">
+    <div v-if="verse?.notes.length === 0" class="text-center text-xs italic text-gray-400 my-4">
       No notes
     </div>
 
-    <!-- <div class="p-4 bg-gray-100">
-      <div class="px-2">
+    <div v-if="verse?.notes.length !== 0" class="p-4 bg-gray-100">
+      <div v-for="note of verse?.notes" :key="note.id" class="px-2 mb-4">
         <div class="text-sm text-gray-400">
-          10.20.2022
+          {{ dayjs(note.createdAt).format('MM.DD.YYYY') }}
         </div>
-        <div class="text-sm text-gray-600">
-          In other parts of scripture David talks about how God is always going to hear and respond to a cry.
-          This shows that David is processing what he is feeling and not just what he knows. Does it truly believe?
-          Maybe; in this moment he needs to express it to God.
-        </div>
-
-        <div class="w-8/12 mx-auto py-5">
-          <div class="h-0.5 bg-gray-200"></div>
-        </div>
-
-        <div class="text-sm text-gray-400">
-          10.24.2022
-        </div>
-        <div class="text-sm text-gray-600">
-          Do you cry to the Lord or are you too proud? What is it that is stopping you from crying out? Do you
-          believe He is a good God and would answer? Do you believe He cares?
+        <div class="text-sm text-gray-600 whitespace-pre-line">
+          {{ note.note }}
         </div>
       </div>
-    </div> -->
-
-    <!-- <div v-if="activeAction === 'note'" class="pt-2 py-2">
-      <TextArea name="Note" label="" hide-details />
-    </div> -->
+    </div>
   </div>
 </template>
 

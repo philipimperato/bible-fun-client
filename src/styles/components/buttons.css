@@ -14,4 +14,8 @@
   .btn-secondary {
     @apply bg-white border-gray-300 text-gray-700 hover:bg-gray-50
   }
+
+  .btn-disabled {
+    @apply bg-gray-200 border-gray-300 text-gray-400 hover:bg-gray-50
+  }
 }
