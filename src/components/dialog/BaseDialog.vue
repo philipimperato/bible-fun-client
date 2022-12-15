@@ -1,13 +1,17 @@
 <script setup lang="ts">
-const props = defineProps({
-  open: {
-    type: Boolean,
-    default: false,
-  },
-})
+// const props = defineProps({
+//   open: {
+//     type: Boolean,
+//     default: true,
+//   },
+// })
 
 const emit = defineEmits(['close'])
-const isOpen = toRef(props, 'open')
+
+// console.log(props)
+
+// const isOpen = toRef(props, 'open')
+const isOpen = ref(true)
 </script>
 
 <template>
@@ -27,7 +31,7 @@ const isOpen = toRef(props, 'open')
 
       <div class="fixed inset-0 overflow-y-auto">
         <div
-          class="flex min-h-full items-center justify-center p-4 text-center"
+          class="flex min-h-full items-center justify-center p-2 text-center"
         >
           <TransitionChild
             as="template"
@@ -49,12 +53,12 @@ const isOpen = toRef(props, 'open')
               </DialogTitle>
 
               <DialogDescription class="px-6">
-                <slot name="description" />
-              </DialogDescription>
+                <slot name="content" />
 
-              <div class="mt-4 bg-gray-50 px-6 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                <slot name="actions" />
-              </div>
+                <div class="mt-4 bg-gray-50 px-6 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                  <slot name="actions" />
+                </div>
+              </DialogDescription>
             </DialogPanel>
           </TransitionChild>
         </div>

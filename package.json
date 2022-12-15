@@ -16,7 +16,7 @@
     "@vueuse/head": "^0.9.8",
     "dayjs": "^1.11.6",
     "feathers-hooks-common": "^6.1.5",
-    "feathers-pinia": "v1.0.0-pre.25",
+    "feathers-pinia": "^1.0.0-pre.25",
     "lodash": "^4.17.21",
     "nvm": "0.0.4",
     "pinia": "^2.0.23",

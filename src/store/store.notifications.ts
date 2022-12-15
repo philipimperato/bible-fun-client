@@ -21,6 +21,7 @@ export const useNotifications = defineStore({
       const id = ObjectId().toHexString()
 
       store.addToStore({ id, ...data })
+      setTimeout(() => store.removeFromStore({ id }), 5000)
     },
   },
 })

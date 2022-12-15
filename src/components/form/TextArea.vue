@@ -18,6 +18,7 @@ const props = defineProps({
   successMessage: {
     type: String,
     default: '',
+    required: false,
   },
   hideDetails: {
     type: Boolean,
@@ -26,6 +27,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue'])
+
+const textarea = ref(null)
+onMounted(() => (textarea.value as any).focus())
+
 const name = toRef(props, 'name')
 
 const {
@@ -51,6 +56,8 @@ const onInput = (event: any) => {
   <div class="mt-1 text-sm">
     <textarea
       :id="name"
+      ref="textarea"
+      rows="8"
       :name="name"
       :value="inputValue"
       class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 shadow-sm
@@ -59,6 +66,9 @@ const onInput = (event: any) => {
     />
     <div v-if="!hideDetails" class="text-red-400 ml-1 text-xs min-h-[30px]">
       {{ errorMessage }}
+    </div>
+    <div class="text-xs text-gray-400 mt-1 ml-2">
+      {{ inputValue.length }}/300
     </div>
   </div>
 </template>

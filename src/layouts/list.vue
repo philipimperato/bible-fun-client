@@ -1,6 +1,6 @@
 <template>
   <main class="container">
-    <div class="px-8">
+    <div>
       <router-view />
     </div>
   </main>
