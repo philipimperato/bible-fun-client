@@ -13,6 +13,14 @@ const activeVerse = ref<number>(-1)
 </script>
 
 <template>
+  <router-link to="/">
+    <div class="border-b bg-gray-100">
+      <button class="btn w-10 h-10 ml-4 my-2 rounded-full bg-gray-200 border-none">
+        <mdi-chevron-left class="w-8 h-8 pt-1.5" />
+      </button>
+    </div>
+  </router-link>
+
   <div class="text-gray-800 text-2xl pt-8 px-4">
     {{ bookName }} {{ chapterNum }}
   </div>

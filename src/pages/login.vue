@@ -79,9 +79,9 @@ const sendEmail = () => {
           <div class="mt-2">
             <button
               type="submit"
-              :class="meta.valid ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-gray-300'"
+              :class="meta.valid ? 'btn-primary' : 'btn-disabled'"
               :disabled="!meta.valid"
-              class="btn btn-primary w-full text-sm py-2 px-4"
+              class="btn w-full text-sm py-2 px-4"
             >
               Sign in
             </button>

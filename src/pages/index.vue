@@ -1,43 +1,63 @@
 <script setup lang="ts">
+const bookStore = useBooks()
+const { data: books } = bookStore.useFind({ query: {}, onServer: true })
+const addTag = async (text: any) => {
+  const { Tag } = useTags()
+  const newTag = new Tag({
+    text: text.value,
+    bgColor: 'bg-gray-100',
+    textColor: 'text-gray-800',
+  })
+
+  await newTag.save()
+  addSnack({
+    type: 'success',
+    title: 'Tag Added',
+    msg: 'Tag has been added',
+  })
+  text.value = ''
+}
+
+const { tagStore } = useTags()
+const { data: tags } = tagStore.useFind({ query: {}, onServer: true })
 </script>
 
 <template>
   <div class="mx-auto w-full md:w-1/2 mt-16">
-    <div class="text-lg border-b mb-4 pt-2">
-      Tech
-    </div>
-    <div class="text-gray-600">
-      <div class="uppercase text-sm text-gray-400">
-        Frontend
+    <div class="px-8">
+      <div class="text-lg border-b mb-4 pt-2">
+        Read
       </div>
-      <ul>
-        <li>- Vuejs 3</li>
-        <li>- Vite</li>
-        <li>- Feathers Pinia</li>
-        <li>- Socketio</li>
-        <li>- Tailwindcss</li>
-      </ul>
-
-      <div class="uppercase text-sm text-gray-400 mt-4">
-        Backend
-      </div>
-      <ul>
-        <li>- FeathersJs (Dove)</li>
-        <li>- NodeJS, Express</li>
-      </ul>
-    </div>
-
-    <div class="text-lg border-b mb-4 mt-16">
-      Pages
-    </div>
-    <div class="text-gray-600">
-      <ul>
-        <li>
-          <router-link as="a" to="/login">
-            - Login
+      <div class="text-gray-600">
+        <div v-for="book of books" :key="book.id" class="text-base">
+          <router-link as="a" class="text-blue-500" :to="`/${book.name}/1`">
+            - {{ book.name }}
           </router-link>
-        </li>
-      </ul>
+        </div>
+      </div>
+
+      <div class="text-lg border-b mb-4 mt-16">
+        Create Tags
+      </div>
+
+      <div class="flex gap-4">
+        <TextFieldAdd
+          value=""
+          type="text"
+          label="Tag name"
+          name="name"
+          hide-details
+          @submit="addTag"
+        />
+      </div>
+
+      <div class="text-base border-b mb-4 mt-16">
+        Current tags
+      </div>
+
+      <div v-for="tag of tags" :key="tag.id">
+        - {{ tag.text }}
+      </div>
     </div>
   </div>
 </template>

@@ -21,13 +21,12 @@ export const useNotifications = defineStore({
       const id = ObjectId().toHexString()
 
       store.addToStore({ id, ...data })
-      setTimeout(() => store.removeFromStore({ id }), 500000)
+      setTimeout(() => store.removeFromStore({ id }), 5000)
     },
   },
 })
 
-const store = useNotifications()
-export const addSnack = store.add
+export const notificationStore = useNotifications()
+export const addSnack = notificationStore.add
 
-syncWithStorage(store, ['itemsById'])
 api.service(servicePath).hooks({})

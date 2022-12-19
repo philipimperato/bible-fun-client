@@ -15,6 +15,7 @@ const emits = defineEmits(['update'])
 const { open, close } = useModal()
 const isActive = toRef(props, 'isActive')
 const verse = toRef(props, 'verse')
+const notes = computed(() => verse.value ? verse.value.notes : [])
 
 const { Note } = useNoteStore()
 
@@ -51,7 +52,7 @@ const addNote = async (formData: any): Promise<void> => {
 </script>
 
 <template>
-  <div class="p-4 py-6">
+  <div class="p-4 py-4">
     <div><span class="text-gray-500 text-base">{{ verse?.verse }}</span> {{ verse?.verseText }}</div>
     <!-- <div v-if="isActive">
       <div>
@@ -78,11 +79,11 @@ const addNote = async (formData: any): Promise<void> => {
       </div>
     </div> -->
 
-    <!-- <div v-if="!isActive" class="inline-flex items-center text-xs text-gray-400">
-      <div>
-        2 Notes
+    <div v-if="!isActive && notes.length > 0" class="inline-flex items-center text-xs text-gray-400">
+      <div v-if="notes.length > 0">
+        {{ notes.length }} Note{{ notes.length > 1 ? 's' : '' }}
       </div>
-      <div class="px-1">
+      <!-- <div class="px-1">
         -
       </div>
       <div>
@@ -93,8 +94,8 @@ const addNote = async (formData: any): Promise<void> => {
       </div>
       <div>
         3 References
-      </div>
-    </div> -->
+      </div> -->
+    </div>
   </div>
 
   <div v-if="isActive">
